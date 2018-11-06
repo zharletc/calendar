@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>MySchedule</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="assets/jquery-ui.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script>
+		
+	</script>
+</head>
+<body>
+	<nav class="navbar navbar-light bg-light">
+	  <span class="navbar-brand">MySchedule</span>
+	</nav>
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-md-12">
+				<center>
+				<div id="calendar">
+					
+				</div>
+				</center>
+			</div>
+		</div>
+		
+		<div class="row form-inline">
+			<div class="col-md-12">
+				<div class="row">
+					<h3>Schedule Detail</h3>
+				</div>
+				<div class="row" style="margin-bottom: 40px;">
+					<div id="placeholder">Date</div>
+				</div>
+				<div class="row">
+					<form>
+						<div class="col-md-12">
+							<div>
+							    <p>Location</p>
+							    <input id="location" type="text" class="form-control">
+							    <input id="Date" type="hidden" class="form-control">
+							  </div>
+						</div>
+					  <br>
+					  <div class="col-md-12">
+					  	 <div>
+						     <p>Description</p>
+						     <textarea  id="description" name="" type="text" class="form-control"></textarea>
+						 </div>
+					  </div>
+					 <button type="" id="submit">save</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+	<script>
+		 $('#calendar').datepicker({
+	        inline: true,
+	        firstDay: 1,
+	        showOtherMonths: true,
+	        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+	    });
+		$("#submit").on('click',function(e){
+			e.preventDefault();
+			var result =  $("#Date").val();
+			var location =  $("#location").val();
+			var description =  $("#description").val();
+			var testObject = [{ 'Date' : result , 'Location' : location , 'Description': description }];
+			localStorage.setItem('testObject', JSON.stringify(testObject));
+		})
+		$("#calendar").change(function() {
+	        var date = $(this).datepicker("getDate");
+	        $("#Date").val(date);
+
+	  //       var testObject = [
+	  //       { 'Date': date } ];
+			// localStorage.setItem('testObject', JSON.stringify(testObject));
+			
+	    });
+		
+	</script>
+</html>
